@@ -1,10 +1,10 @@
 import { Router } from "express";
+import { Request, Response } from "express";
 import * as followController from "../controllers/followController";
 import authentication from "../middlewares/authentication";
 
-const threadRoute = Router();
+const followRoute = Router();
 
-threadRoute.get("/:followingId", followController.getFollow);
+followRoute.post("/:followingId", authentication, followController.follow);
 
-
-export default threadRoute;
+export default followRoute;
