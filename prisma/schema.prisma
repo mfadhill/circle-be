@@ -18,8 +18,49 @@ model Test {
 }
 
 model User {
-  id       String @id @default(uuid())
-  fullname String
-  email    String
-  password String
+  id         String   @id @default(uuid())
+  fullname   String
+  email      String
+  password   String
+  threads    Thread[]
+  followedBy Follow[] @relation("followedBy")
+  following  Follow[] @relation("following")
+  like       Like[]
+}
+
+model Thread {
+  id       String        @id @default(uuid())
+  content  String
+  userId   String
+  threadId String?
+  author   User          @relation(fields: [userId], references: [id])
+  image    ThreadImage[]
+  like     Like[]
+  parent   Thread?       @relation("replies", fields: [threadId], references: [id])
+  replies  Thread[]      @relation("replies")
+}
+
+model ThreadImage {
+  id       Int    @id @default(autoincrement())
+  url      String
+  threadId String
+  thread   Thread @relation(fields: [threadId], references: [id])
+}
+
+model Follow {
+  followedBy   User   @relation("followedBy", fields: [followedById], references: [id])
+  followedById String
+  following    User   @relation("following", fields: [followingId], references: [id])
+  followingId  String
+
+  @@id([followingId, followedById])
+}
+
+model Like {
+  userId   String
+  threadId String
+  user     User   @relation(fields: [userId], references: [id])
+  thread   Thread @relation(fields: [threadId], references: [id])
+
+  @@id([userId, threadId])
 }

@@ -1,3 +1,3 @@
 export interface IErrorObj {
-    [key: string]: { statusCode: number; message: string };
- }
+   [key: string]: { statusCode: number; message: string };
+}

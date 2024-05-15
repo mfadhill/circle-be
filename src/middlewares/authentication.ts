@@ -23,6 +23,8 @@ const authentication = (req: Request, res: Response, next: NextFunction) => {
          });
       }
 
+      console.log("DECODED", decoded);
+
       //   ini menyisipkan id dari user yang telah kita decode di atas
       res.locals.userId = decoded.id;
       next();

@@ -39,36 +39,36 @@ export const createUser = async (req: Request, res: Response) => {
    }
 };
 
-// export const deleteUser = async (req: Request, res: Response) => {
-//    try {
-//       const { params } = req;
-//       const { userId } = params;
+export const deleteUser = async (req: Request, res: Response) => {
+   try {
+      const { params } = req;
+      const { userId } = params;
 
-//       const messageDeleteUser = await userService.deleteUser(userId);
+      const messageDeleteUser = await userService.deleteUser(userId);
 
-//       res.status(200).json({ message: messageDeleteUser });
-//    } catch (error) {
-//       console.log(error);
+      res.status(200).json({ message: messageDeleteUser });
+   } catch (error) {
+      console.log(error);
 
-//       return errorHandler(error, res);
-//    }
-// };
+      return errorHandler(error, res);
+   }
+};
 
-// export const updateUser = async (req: Request, res: Response) => {
-//    try {
-//       const { body, params } = req;
-//       const { userId } = params;
+export const updateUser = async (req: Request, res: Response) => {
+   try {
+      const { body, params } = req;
+      const { userId } = params;
 
-//       const dataUpdateUser = await userService.updateUser(userId, body);
+      const dataUpdateUser = await userService.updateUser(userId, body);
 
-//       res.status(200).json(dataUpdateUser);
-//    } catch (error) {
-//       console.log(error);
+      res.status(200).json(dataUpdateUser);
+   } catch (error) {
+      console.log(error);
 
-//       const err = error as unknown as Error;
+      const err = error as unknown as Error;
 
-//       res.status(500).json({
-//          message: err.message,
-//       });
-//    }
-// };
+      res.status(500).json({
+         message: err.message,
+      });
+   }
+};
