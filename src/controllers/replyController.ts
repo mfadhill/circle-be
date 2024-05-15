@@ -1,14 +1,22 @@
 import { Request, Response } from "express";
-import * as threadService from "../services/threadService";
+import * as replyService from "../services/replyService";
 import { errorHandler } from "../utils/errorHandler";
 
-export const getThread = async (req: Request, res: Response) => {
-   try {
-      const threadId = req.params.threadId;
-      res.status(200).json(await threadService.getThread(threadId));
-   } catch (error) {
-      console.log(error);
-
-      errorHandler(error, res);
-   }
-};
+export const createReply = async (req: Request, res: Response) => {
+    try {
+       console.log(res.locals.userId);
+       const body = req.body;
+       body.userId = res.locals.userId;
+       console.log(body);
+ 
+       const files = req.files as {
+          [fieldname: string]: Express.Multer.File[];
+       };
+ 
+       res.status(200).json(await replyService.createReply(body, files));
+    } catch (error) {
+       console.log(error);
+ 
+       errorHandler(error, res);
+    }
+ };

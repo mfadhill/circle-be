@@ -51,6 +51,14 @@ export const getThreads = async () => {
                fullname: true,
             },
          },
+         replies: {
+            select: {
+               id: true,
+               content: true,
+               image: true,
+               threadId: true,
+            }
+         },
          image: {
             select: {
                url: true,
