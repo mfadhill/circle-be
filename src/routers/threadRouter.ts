@@ -13,5 +13,6 @@ threadRoute.post(
    uploadMiddleware(),
    threadController.createThreads
 );
+threadRoute.put("/updatethread/:threadId", authentication, uploadMiddleware(), threadController.updateThread);
 
 export default threadRoute;

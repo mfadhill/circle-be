@@ -26,6 +26,18 @@ model User {
   followedBy Follow[] @relation("followedBy")
   following  Follow[] @relation("following")
   like       Like[]
+  profile  Profile?
+}
+
+model Profile{
+  id Int @id @default(autoincrement())
+  userId String @unique
+  user User @relation( fields: [userId], references: [id])
+  username String
+  avatar String?
+  cover String?
+  bio String?
+  fullname String
 }
 
 model Thread {
@@ -38,6 +50,8 @@ model Thread {
   like     Like[]
   parent   Thread?       @relation("replies", fields: [threadId], references: [id])
   replies  Thread[]      @relation("replies")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model ThreadImage {

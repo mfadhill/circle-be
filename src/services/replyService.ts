@@ -42,7 +42,6 @@ export const updateReply = async( id: string, files: { [fieldname: string]: Expr
     });
 }
 
-
 // export const deleteReply = async(id:string , files: { [fieldname: string]: Express.Multer.File[]}  
 // ) => {
 //     const reply = await db.thread.delete({
