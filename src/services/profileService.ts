@@ -1,5 +1,5 @@
+import { Profile } from "@prisma/client";
 import db from "../lib/db";
-import { IProfile } from "../types/app";
 
 export const getProfile = async (userId: string) => {
   const getProfiles = await db.profile.findFirst({
@@ -11,20 +11,19 @@ export const getProfile = async (userId: string) => {
         avatar:true,
         bio:true,
         cover:true,
-        fullname:true,
+        fullname:true
     }
     });
 
     if(!getProfiles) {
         throw new Error("Profile not Found")
     }
-
     return getProfiles
 };
 
 export const updateProfile = async (
   userId: string,
-  body: IProfile,
+  body: Profile,
   files: { [fieldname: string]: Express.Multer.File[] }
 )  => {
   try {
@@ -46,9 +45,10 @@ export const updateProfile = async (
               username: true,
               bio: true,
               avatar: true,
-              cover: true
+              cover: true,
+              fullname:true
           },
-      });
+        });
       return updatedProfile;
   } catch (error) {
       throw error;

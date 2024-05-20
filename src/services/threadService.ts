@@ -1,7 +1,5 @@
 import { Thread } from "@prisma/client";
 import db from "../lib/db";
-import { threadId } from "worker_threads";
-import { error } from "console";
 import { ERROR_MESSAGE } from "../utils/constant/error";
 
 export const insertThread = async (
@@ -20,7 +18,6 @@ export const insertThread = async (
          })),
       });
    }
-
    return thread;
 };
 

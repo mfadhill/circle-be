@@ -1,7 +1,7 @@
 import { Router } from "express";
 import authentication from "../middlewares/authentication";
 import uploadMiddleware from "../middlewares/upload";
-import { updateProfile, getProfile } from "../controllers/profileController";
+import { getProfile, updateProfile } from "../controllers/profileController";
 const profileRouter = Router();
 
 profileRouter.put("/profile", authentication, uploadMiddleware(), updateProfile);

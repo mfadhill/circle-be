@@ -8,5 +8,4 @@ export interface IProfile {
   avatar?: String;
   cover?: String;
   bio?: String;
-  fullname: String;
 }
